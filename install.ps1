@@ -4,8 +4,8 @@ $sPath = "$env:LOCALAPPDATA\kenk-shift-active-hours"
 if (-not (test-path $sPath)) {
     New-Item $sPath -ItemType "directory"
 }
-copy-item ".\kenk-shift-active-hours.ps1" $sPath
-copy-item ".\Hidden.vbs" $sPath
+copy-item "$PSScriptRoot\kenk-shift-active-hours.ps1" $sPath
+copy-item "$PSScriptRoot\Hidden.vbs" $sPath
 $sCMDFileContent = ('powershell.exe -file "' + "$sPath\kenk-shift-active-hours.ps1" +'"')
 [IO.File]::WriteAllLines("$sPath\run-hidden.cmd", $sCMDFileContent)
 
